@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('Component.sale')
+    @include('Component.sell')
 @endsection
