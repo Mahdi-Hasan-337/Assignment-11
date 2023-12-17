@@ -24,7 +24,6 @@ class Product_Controller extends Controller {
         return view('dashboard', compact('todaySales', 'yesterdaySales', 'thisMonthSales', 'lastMonthSales', 'products', 'soldItems'));
     }
 
-
     public function create() {
         return view('create');
     }
@@ -54,8 +53,22 @@ class Product_Controller extends Controller {
         return redirect('/')->with('status', 'Updated Successfully');
     }
 
+    // public function delete($id) {
+    //     $product = Products::find($id);
+    //     $product->delete();
+
+    //     return redirect('/')->with('status', 'Deleted Successfully');
+    // }
+
     public function delete($id) {
         $product = Products::find($id);
+
+        $hasSales = Sold::where('product_id', $id)->exists();
+
+        if ($hasSales) {
+            return redirect('/')->with('error', 'Cannot delete product with associated sales');
+        }
+
         $product->delete();
 
         return redirect('/')->with('status', 'Deleted Successfully');
