@@ -53,12 +53,8 @@
                                         class='col-6 btn btn-danger'>Delete</a>
                                 </td>
                                 <td>
-                                    <form action="{{ url('sell-product/' . $product->id) }}" method="POST">
-                                        @csrf
-                                        <input type="number" name="quantity" required><br>
-                                        <button type="submit" class="col-6 btn btn-warning mb-2"
-                                            style="display: inline">Sale</button>
-                                    </form>
+                                    <a href="{{ url('sold-product/' . $product->id) }}"
+                                        class='col-12 btn btn-danger'>Sale</a>
                                 </td>
                             </tr>
                         @endforeach

@@ -74,6 +74,11 @@ class Product_Controller extends Controller {
         return redirect('/')->with('status', 'Deleted Successfully');
     }
 
+    public function sold($id) {
+        $product = Products::find($id);
+        return view('sell', compact('product'));
+    }
+
     public function sell(Request $request, $id) {
         $product = Products::find($id);
 
